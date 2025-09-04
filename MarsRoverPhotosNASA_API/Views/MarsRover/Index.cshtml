@@ -1,0 +1,69 @@
+﻿@{
+    ViewData["Title"] = "Mars Rover Photos Home Page";
+}
+<style>
+    /*gonna add spacey styling here*/
+    :root {
+        --primary: rgb(1, 34, 64);
+        --secondary: rgb(0,0,0);
+        --tertiary: rgb(205, 133, 63);
+        --glass: rgba(255, 255, 255, 0.1);
+        --glass-border: rgba(255, 255, 255, 0.2);
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+
+
+    body {
+        background: linear-gradient(145deg, var(--primary), var(--secondary), var(--tertiary));
+        background-size: 200% 200%;
+        font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        animation: bgShift 20s infinite ease-in-out;
+        color: white
+    }
+
+    .card {
+        background: var(--glass);
+        backdrop-filter: blur(20px);
+    }
+
+
+
+    /*background shift animation*/
+    @@keyframes bgShift {
+        0%, 100% {
+            background-position: 0% 0%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+    }
+
+</style>
+<div class="text-center">
+    <h1 class="display-4">Mars Rover Photos</h1>
+	<p class="lead">Explore the latest photos from Mars rovers.</p>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <h2>Rover Photos</h2>
+        <p>View photos taken by the Mars rovers.</p>
+        <p><a class="btn btn-secondary" asp-controller="MarsRover" asp-action="MarsPhotos">View Photos &raquo;</a></p>  <!--&raquo is arrow pointing to right-->
+    </div>
+    <div class="col-md-4">
+        <h2>About</h2>
+        <p>Learn more about the Mars rovers and their missions.</p>
+        <p><a class="btn btn-secondary" asp-controller="MarsRover" asp-action="About">Learn More &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Contact</h2>
+        <p>Get in touch with us for any inquiries.</p>
+        <p><a class="btn btn-secondary" asp-controller="MarsRover" asp-action="Contact">Contact Us &raquo;</a></p>
+	</div>
+</div>

@@ -1,0 +1,68 @@
+﻿@{
+    ViewData["Title"] = "Mars Rover About Page";
+}
+<style>
+    /*gonna add spacey styling here*/
+    :root {
+        --primary: rgb(1, 34, 64);
+        --secondary: rgb(0,0,0);
+        --tertiary: rgb(205, 133, 63);
+        --glass: rgba(255, 255, 255, 0.1);
+        --glass-border: rgba(255, 255, 255, 0.2);
+        --box-border: 0 5px 30px 0 rgba(31, 38, 135, 0.5);
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background: linear-gradient(145deg, var(--primary), var(--secondary), var(--tertiary));
+        background-size: 200% 200%;
+        font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        animation: bgShift 20s infinite ease-in-out;
+        color: white
+    }
+
+    .card {
+        background: var(--glass);
+        backdrop-filter: blur(20px);
+        border: 1px solid var(--glass-border);
+        border-radius: 15px;
+        padding: 10px;
+        box-shadow: var(--box-border);
+    }
+
+
+
+    /*background shift animation*/
+    @@keyframes bgShift {
+        0%, 100% {
+            background-position: 0% 0%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+    }
+</style>
+
+<div class="card">
+    <div class="card-title">
+        <h1>About Section</h1>
+    </div>
+    <div class="card-body">
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam in nisi fermentum, luctus lectus nec, porta tortor. Vestibulum euismod, dui ut scelerisque finibus, sapien metus tristique elit, id ullamcorper nisi mi porta justo. In a magna eu erat fringilla pretium. Nunc eget erat neque. Aliquam tempor tristique elementum. Vivamus eu erat eu massa interdum varius. Ut ut felis ut justo auctor porttitor. Ut mattis dui nunc, id facilisis magna accumsan non. Suspendisse dapibus nulla quis libero pharetra tincidunt. Nullam non sapien vitae lacus tempus pharetra id ut metus. Aliquam suscipit gravida rhoncus. Integer iaculis ipsum non fermentum condimentum. Nunc et metus eu est sollicitudin varius. Duis libero odio, eleifend id felis tincidunt, dignissim bibendum lacus. Suspendisse condimentum, urna sed facilisis posuere, turpis purus vulputate diam, in maximus dui velit a turpis.
+        </p>
+        <p>
+            Mauris mollis libero placerat, lacinia dui quis, scelerisque justo. Praesent tincidunt mollis nulla a dignissim. Vestibulum vitae auctor nulla. Nunc tellus ante, sodales et nulla et, placerat elementum est. Ut convallis metus eu suscipit dictum. Phasellus elementum eros lectus, nec cursus dolor tincidunt nec. Vivamus condimentum nisl quis pulvinar lobortis. Aenean tincidunt metus et felis mattis semper. Sed pretium ullamcorper tellus laoreet imperdiet. Sed gravida sagittis molestie. Aliquam eget ligula a nulla aliquet scelerisque. Sed convallis eleifend ultricies. Aenean cursus lorem eget augue pellentesque, eget fermentum mi ullamcorper. Donec sit amet quam ut lectus gravida sollicitudin tempor sit amet tellus. Morbi imperdiet metus ut efficitur bibendum.
+        </p>
+        <p>
+            Vestibulum nec felis nibh. Nulla facilisi. Etiam gravida urna neque, ac commodo nulla mollis in. Donec id sem in ex pulvinar aliquet. Aliquam erat volutpat. Donec luctus laoreet risus ut vestibulum. Nullam ornare risus eu mi ultrices, vel volutpat metus iaculis. Mauris tincidunt mi mauris. Sed venenatis elit eu fermentum iaculis. Phasellus sed massa ac dolor condimentum rhoncus sit amet id metus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam et fermentum est.
+        </p>
+    </div>
+
+</div>

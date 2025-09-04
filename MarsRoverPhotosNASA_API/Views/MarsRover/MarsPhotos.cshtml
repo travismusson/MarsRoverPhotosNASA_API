@@ -1,0 +1,244 @@
+﻿@{
+    ViewData["Title"] = "Mars Rover Photos Home Page";
+}
+@model List<MarsRoverPhotosNASA_API.Models.MarsRoverModel.MarsRoverPhoto>;
+<style>
+    /*gonna add spacey styling here*/
+    :root{
+        --primary: rgb(1, 34, 64);
+        --secondary: rgb(0,0,0);
+        --tertiary: rgb(205, 133, 63); 
+        --glass: rgba(255, 255, 255, 0.1);
+		--glass-border: rgba(255, 255, 255, 0.2);
+        --box-border: 0 5px 30px 0 rgba(31, 38, 135, 0.5);
+        --text-muted: rgba(255, 255, 255, 0.5);
+    }
+
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing:border-box;
+    }
+
+    html{
+		scroll-behavior: smooth;
+    }
+
+    body{
+        background: linear-gradient(145deg, var(--primary), var(--secondary), var(--tertiary));
+        background-size: 400% 400%;
+        font-family:system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        animation: bgShift 20s infinite ease-in-out;
+        color:white;
+        backdrop-filter:blur(20px);
+	}
+
+    .card{
+        background:var(--glass);
+        backdrop-filter:blur(20px);
+    }
+
+
+    .img-fluid{
+		box-shadow: 5px 5px 10px var(--glass-border);
+		border-radius: 50px;
+    }
+
+    .mainContainer{
+        max-width: 1500px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .headerCard{
+        background:var(--glass);
+        backdrop-filter:blur(20px);
+        border: 1px solid var(--glass-border);
+        border-radius: 15px;
+        padding: 10px;
+        box-shadow: var(--box-border) ;
+        margin-bottom:20px;
+	}
+
+    .roverList{
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 10px;
+		flex-wrap: wrap;
+	}
+
+    .roverLink{
+		background: var(--glass);
+        text-decoration: none;
+        font-weight: bold;
+        padding: 10px 20px;
+        border: 2px solid var(--glass-border);
+        border-radius: 20px;
+        transition: all 0.5s ease-in-out;
+        color:var(--tertiary);
+        backdrop-filter: blur(50px);
+	}
+    .roverLink:hover{   
+        transform: translateY(-2px);
+        box-shadow: var(--box-border);
+		background: var(--tertiary);
+        backdrop-filter:blur(50px);
+        color:var(--secondary);
+	}
+
+    .photoContainer{
+		background: var(--glass);
+		backdrop-filter: blur(20px);
+		border: 1px solid var(--glass-border);
+		border-radius: 20px;
+		overflow: hidden;
+		box-shadow: var(--box-border);
+		transition: all 0.5s ease-in-out;
+	}
+    .photoContainer:hover{
+        transform: translateY(-2px);
+		background:var(--glass);
+	    box-shadow: var(--box-border);
+        transition:all 0.5s ease-in-out;
+    }
+    .photoGrid{
+        overflow:hidden;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 20px;
+        margin-top: 20px;
+        background: var(--glass);
+        border-radius:20px;
+        padding:20px;
+        backdrop-filter: blur(20px);
+    }
+    .photoHeader{
+		background: var(--tertiary);
+		padding: 10px;
+		border-bottom: 2px solid var(--glass-border);
+    }
+
+    .expiditionTitle{
+        color: white;
+        font-weight: 500;
+    }
+    .expiditionSubtitle{
+        font-weight:250;
+		color: var(--text-muted);
+	}
+
+    .photobody{
+		padding: 10px;
+    }
+
+    photoDetails{
+		display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+		gap: 10px;
+		margin-top: 10px;
+    }
+
+    .detailItem{
+		background: var(--glass);
+		padding:15px;
+		border-radius: 10px;
+		border: 1px solid var(--glass-border);
+		transition: all 0.3s ease-in-out;
+        margin-top:10px;
+    }
+
+	.detailItem:hover {
+        background: var(--glass);
+    }
+
+	.detailLabel {
+        font-weight: bold;
+		color: var(--tertiary);
+        text-transform: uppercase;
+    }
+
+    /*background shift animation*/
+    @@keyframes bgShift{
+        0%, 100% {
+            background-position: 0% 0%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+
+    }
+
+
+
+</style>
+
+<div class="mainContainer">
+    <div class="headerCard text-center">
+        <h1 class="display-4 mb-3">Mars Rover Photos</h1>
+        <p class="lead">Photos From The (@Model.FirstOrDefault()?.Rover.Name) Rover!</p>        <!--Could be a nullable type-->
+        <div class="roverList">
+            <a href="#" class="roverLink"> Curiosity</a>
+            <a href="#" class="roverLink"> Spirit</a>
+            <a href="#" class="roverLink"> Opportunity</a>
+        </div>
+    </div>
+	@if (Model == null || !Model.Any())
+    {
+        <div class="text-center">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <p>Loading Mars rover photos...</p>
+        </div>
+    }
+    else
+    {
+        <div class="photoGrid">
+        @foreach (var expidition in Model)
+        {
+            <div class="photoContainer">
+                <div class="photoHeader">
+                    <h1 class="expiditionTitle">Expidition ID: @expidition.Id</h1>        <!--Expidition id-->
+                    <h3 class="expiditionSubtitle">Expidition Sol: @expidition.Sol</h3>
+                </div>
+                <div class="photoBody mb-4">
+                    <img src="@expidition.ImgSrc" alt="Mars Rover Photo" class="img-fluid mb-4" loading="lazy"/>      <!--added lazy loading for optimization images still seem to be the most intensive-->
+                    <div class="photoDetails">
+                        <div class="detailItem">
+                            <span class="detailLabel">Camera:</span><br/>
+							@expidition.Camera.FullName
+                        </div>
+                        <div class="detailItem">
+                            <span class="detailLabel">Earth Date:</span><br />
+                            @expidition.EarthDate
+                        </div>
+                        <div class="detailItem">
+                            <span class="detailLabel">Launch Date:</span><br />
+                            @expidition.Rover.LaunchDate
+                        </div>
+                        <div class="detailItem">
+                            <span class="detailLabel">Landing Date:</span><br />
+							@expidition.Rover.LandingDate
+                        </div>
+                    </div>
+
+                    <!--refactored
+
+                    <p class="card-text">Camera: @expidition.Camera.FullName.ToString()</p>
+                    <p class="card-text">Earth Date: @expidition.EarthDate</p>
+                    <p class="card-text">Rover: @expidition.Rover.Name</p>
+                    <p class="card-text">Launching Date: @expidition.Rover.LaunchDate</p>
+                    <p class="card-text">Landing Date: @expidition.Rover.LandingDate</p>
+
+                    -->
+
+                </div>
+            </div>
+        }
+        </div>
+    }
+    
+</div>
